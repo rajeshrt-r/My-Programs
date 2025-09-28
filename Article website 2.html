@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rajesh Tech World</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --secondary: #0f172a;
+            --accent: #f59e0b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --dark: #1e293b;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Compact Header */
+        header {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 0.8rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        .logo-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        /* Three Lines Hamburger Menu */
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 24px;
+            height: 18px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background-color: var(--dark);
+            border-radius: 1px;
+            transition: all 0.3s ease;
+        }
+
+        /* Search Bar */
+        .search-container {
+            display: flex;
+            align-items: center;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 0.4rem 0.8rem;
+            width: 200px;
+            margin: 0 1rem;
+        }
+
+        .search-container input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            font-size: 0.9rem;
+            padding: 0.2rem;
+        }
+
+        .search-container i {
+            color: var(--gray);
+            margin-right: 5px;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 2rem 1.5rem;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+        }
+
+        .mobile-menu ul li {
+            margin-bottom: 1rem;
+        }
+
+        .mobile-menu a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.5rem 0;
+        }
+
+        .mobile-menu a i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Articles Grid */
+        .section-title {
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-image {
+            height: 180px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .article-content {
+            padding: 1.2rem;
+        }
+
+        .article-category {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .article-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.6rem;
+            line-height: 1.4;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-top: 0.8rem;
+        }
+
+        /* Featured Article */
+        .featured-article {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        .featured-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-image {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 2rem 0 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-column a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 1rem;
+            }
+
+            .search-container {
+                width: 150px;
+            }
+
+            .featured-article {
+                grid-template-columns: 1fr;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo h1 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Compact Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-laptop-code logo-icon"></i>
+                <h1>Rajesh Tech World</h1>
+            </div>
+            
+            <!-- Search Option -->
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search articles...">
+            </div>
+            
+            <!-- Three Lines Hamburger Menu -->
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="overlay" id="overlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <h3>Menu</h3>
+            <button class="menu-close" id="menuClose" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">×</button>
+        </div>
+        <ul>
+            <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#"><i class="fas fa-user"></i> Login</a></li>
+            <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            <li><a href="#"><i class="fas fa-newspaper"></i> Articles</a></li>
+            <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
+            <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Featured Article -->
+        <section class="featured-article">
+            <div class="featured-content">
+                <span class="article-category">Featured</span>
+                <h2 class="article-title">The Future of AI: How Machine Learning is Transforming Industries</h2>
+                <p>Artificial intelligence is no longer a futuristic concept. Discover how ML algorithms are revolutionizing healthcare, finance, and manufacturing with real-world applications.</p>
+                <div class="article-meta">
+                    <span><i class="far fa-user"></i> By Rajesh Kumar</span>
+                    <span><i class="far fa-clock"></i> September 26, 2023</span>
+                </div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="AI Technology" class="featured-image">
+        </section>
+
+        <!-- Latest Articles -->
+        <h2 class="section-title">Latest Technology News</h2>
+        <div class="articles-grid">
+            <!-- Article 1 -->
+            <article class="article-card">
+                <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Quantum Computing" class="article-image">
+                <div class="article-content">
+                    <span class="article-category">Quantum Computing</span>
+                    <h3 class="article-title">Quantum Breakthrough Achieved by Research Team</h3>
+                    <p>Scientists announce major advancement in quantum computing stability that could accelerate commercial applications.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 2 days ago</span>
+                        <span><i class="far fa-comment"></i> 14 comments</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Article 2 -->
+            <article class="article-card">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cybersecurity" class="article-image">
+                <div class="article-content">
+                    <span class="article-category">Cybersecurity</span>
+                    <h3 class="article-title">New Security Framework Protects Against Emerging Threats</h3>
+                    <p>Enterprise cybersecurity gets a major upgrade with new protocols designed to counter sophisticated attacks.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 3 days ago</span>
+                        <span><i class="far fa-comment"></i> 22 comments</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Article 3 -->
+            <article class="article-card">
+                <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="5G Technology" class="article-image">
+                <div class="article-content">
+                    <span class="article-category">5G & IoT</span>
+                    <h3 class="article-title">5G Rollout Accelerates Across Major Cities</h3>
+                    <p>Telecom companies expand 5G coverage, enabling new IoT applications and faster connectivity for millions.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 5 days ago</span>
+                        <span><i class="far fa-comment"></i> 18 comments</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Rajesh Tech World</h3>
+                <p>Latest technology news and insights delivered daily.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="#">AI & Machine Learning</a></li>
+                    <li><a href="#">Cybersecurity</a></li>
+                    <li><a href="#">Cloud Computing</a></li>
+                    <li><a href="#">Emerging Tech</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 Rajesh Tech World. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const menuClose = document.getElementById('menuClose');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('overlay');
+            
+            // Open menu
+            menuToggle.addEventListener('click', function() {
+                mobileMenu.classList.add('active');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // Close menu
+            function closeMenu() {
+                mobileMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+            
+            menuClose.addEventListener('click', closeMenu);
+            overlay.addEventListener('click', closeMenu);
+            
+            // Search functionality
+            const searchInput = document.querySelector('.search-container input');
+            
+            searchInput.addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') {
+                    const searchTerm = this.value.toLowerCase();
+                    alert(`Searching for: ${searchTerm}`);
+                    // In a real implementation, you would filter articles here
+                }
+            });
+        });
+    </script>
+</body>
+</html>
