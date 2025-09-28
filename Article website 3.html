@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RT Tech World - Where Technology Meets the Future</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS for specific styles -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Dark background for a tech feel */
+            color: #d1d5db; /* Light gray text for readability */
+        }
+        .logo-text {
+            color: #f97316; /* Signature Orange */
+            text-shadow: 0 0 5px rgba(249, 115, 22, 0.4);
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #f97316;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f97316;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .btn-primary {
+            background-color: #f97316;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .btn-primary:hover {
+            background-color: #fb923c;
+            transform: translateY(-2px);
+        }
+        .glassmorphism {
+            background: rgba(31, 41, 55, 0.5); /* Semi-transparent background */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header Section -->
+    <header id="header" class="glassmorphism sticky top-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="#" class="text-2xl lg:text-3xl font-extrabold">
+                    <span class="logo-text">RT Tech World</span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#" class="nav-link">Home</a>
+                    <a href="#articles" class="nav-link">Articles</a>
+                    <a href="#about" class="nav-link">About Us</a>
+                    <a href="#ai-hub" class="nav-link">AI Hub</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                    <button id="signInBtnDesktop" class="text-white bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign In</button>
+                    <button id="signOutBtnDesktop" class="hidden text-white bg-red-600 hover:bg-red-500 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign Out</button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
+                <a href="#" class="block nav-link text-center py-2">Home</a>
+                <a href="#articles" class="block nav-link text-center py-2">Articles</a>
+                <a href="#about" class="block nav-link text-center py-2">About Us</a>
+                <a href="#ai-hub" class="block nav-link text-center py-2">AI Hub</a>
+                <a href="#contact" class="block nav-link text-center py-2">Contact</a>
+                <div class="flex flex-col space-y-2 pt-4">
+                     <button id="signInBtnMobile" class="text-white bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign In</button>
+                     <button id="signOutBtnMobile" class="hidden text-white bg-red-600 hover:bg-red-500 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign Out</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="relative h-[60vh] md:h-[80vh] flex items-center justify-center text-center text-white overflow-hidden">
+            <div class="absolute inset-0 bg-black opacity-50 z-10"></div>
+            <img src="https://placehold.co/1920x1080/1a202c/ffffff?text=AI+Neural+Network" alt="Abstract AI background" class="absolute inset-0 w-full h-full object-cover">
+            <div class="relative z-20 container mx-auto px-6">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-4 leading-tight" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">Where Technology <br class="md:hidden"> Meets the Future.</h1>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8">Your digital gateway into the future of innovation. High-quality articles enriched with visuals, modern layouts, and interactive experiences.</p>
+                <a href="#articles" class="btn-primary text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg">Explore Articles</a>
+            </div>
+        </section>
+
+        <!-- Main Article Section -->
+        <section id="articles" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <article class="max-w-4xl mx-auto bg-gray-800 rounded-2xl shadow-2xl overflow-hidden">
+                    <header>
+                        <img src="https://placehold.co/1200x600/f97316/111827?text=The+Future+of+AI" alt="Futuristic AI Brain" class="w-full h-64 md:h-96 object-cover">
+                    </header>
+                    <div class="p-6 md:p-10">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">The Future of Artificial Intelligence</h2>
+                        <p class="text-gray-400 text-sm mb-6">By Jane Doe | Published on Sep 28, 2025</p>
+
+                        <div class="prose prose-invert max-w-none text-gray-300 leading-relaxed">
+                            <p class="text-xl">Artificial Intelligence (AI) is no longer a concept confined to science fiction. It's a transformative force reshaping industries, economies, and our daily lives. From autonomous vehicles to personalized medicine, AI's potential is boundless, but its rapid evolution also brings complex challenges.</p>
+                            
+                            <p>This article delves into the trajectory of AI, exploring the key trends, ethical considerations, and groundbreaking innovations that will define the next decade. We'll examine the rise of Generative AI, the importance of ethical frameworks, and how AI is becoming a collaborative partner in human creativity and problem-solving.</p>
+                            
+                            <blockquote class="border-l-4 border-orange-500 pl-4 italic text-white my-8">
+                                "The development of full artificial intelligence could spell the end of the human race... It would take off on its own, and re-design itself at an ever-increasing rate." - Stephen Hawking
+                            </blockquote>
+
+                            <h3 class="text-2xl font-semibold text-white mt-8 mb-4">Visual Storytelling: Data in Motion</h3>
+                            <p>To truly grasp AI's impact, we must visualize its complexity. The infographic below illustrates the exponential growth in AI model parameters, a key indicator of their increasing sophistication and capability.</p>
+                            
+                            <figure class="my-8">
+                                <img src="https://placehold.co/800x450/1f2937/d1d5db?text=Infographic:+AI+Model+Growth" alt="Infographic showing AI model growth" class="rounded-lg shadow-lg w-full">
+                                <figcaption class="text-center text-sm text-gray-400 mt-2">The number of parameters in large language models has grown exponentially since 2018.</figcaption>
+                            </figure>
+
+                            <h3 class="text-2xl font-semibold text-white mt-8 mb-4">AI in the Real World</h3>
+                            <p>From logistics to healthcare, AI is optimizing processes at an unprecedented scale. In medicine, AI algorithms are now capable of detecting diseases from medical scans with superhuman accuracy. In the creative fields, AI tools are generating art, music, and code, acting as powerful co-creators. We are entering an era of human-AI collaboration that will unlock new frontiers of innovation.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+        
+        <!-- AI Hub Section -->
+        <section id="ai-hub" class="py-20">
+            <div class="container mx-auto px-6 text-center">
+                 <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Explore Our AI Hub</h2>
+                <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-12">Dive deeper into specific categories of technology. From Robotics to Space Tech, our AI hub is your launchpad for discovery.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Category Card -->
+                    <div class="glassmorphism p-8 rounded-xl transform hover:-translate-y-2 transition-transform duration-300">
+                        <h3 class="text-xl font-bold text-orange-500 mb-2">AI & Machine Learning</h3>
+                        <p class="text-gray-400">Latest breakthroughs and research.</p>
+                    </div>
+                    <!-- Category Card -->
+                    <div class="glassmorphism p-8 rounded-xl transform hover:-translate-y-2 transition-transform duration-300">
+                        <h3 class="text-xl font-bold text-orange-500 mb-2">Robotics</h3>
+                        <p class="text-gray-400">The future of automation and hardware.</p>
+                    </div>
+                    <!-- Category Card -->
+                    <div class="glassmorphism p-8 rounded-xl transform hover:-translate-y-2 transition-transform duration-300">
+                        <h3 class="text-xl font-bold text-orange-500 mb-2">Space Tech</h3>
+                        <p class="text-gray-400">Innovations beyond our world.</p>
+                    </div>
+                    <!-- Category Card -->
+                    <div class="glassmorphism p-8 rounded-xl transform hover:-translate-y-2 transition-transform duration-300">
+                        <h3 class="text-xl font-bold text-orange-500 mb-2">Startups</h3>
+                        <p class="text-gray-400">The disrupters of tomorrow.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- Footer Section -->
+    <footer id="contact" class="bg-gray-900 text-gray-400 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+                <!-- About -->
+                <div id="about">
+                    <h3 class="text-xl font-bold text-white mb-4">RT Tech World</h3>
+                    <p>A digital gateway into the future of innovation, designed for enthusiasts, innovators, and dreamers. We transform articles into experiences.</p>
+                </div>
+                <!-- Links -->
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#articles" class="hover:text-orange-500 transition-colors">Articles</a></li>
+                        <li><a href="#ai-hub" class="hover:text-orange-500 transition-colors">AI Hub</a></li>
+                        <li><a href="#" class="hover:text-orange-500 transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-orange-500 transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <!-- Social -->
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-4">Connect With Us</h3>
+                    <div class="flex justify-center md:justify-start space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-orange-500 transition-colors">
+                           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/></svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-orange-500 transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.206v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.47 1.344h2.94v8.59H3.535v-8.59z" clip-rule="evenodd"/></svg>
+                        </a>
+                         <a href="#" class="text-gray-400 hover:text-orange-500 transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.286 2.893 7.913 6.838 9.243.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.81.61-3.4-1.355-3.4-1.355-.455-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.03-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.338 4.695-4.566 4.943.359.308.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center text-sm">
+                <p>&copy; 2025 RT Tech World. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript for Interactivity -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const header = document.getElementById('header');
+            
+            // Toggle mobile menu
+            mobileMenuButton.addEventListener('click', function () {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Member Zone simulation
+            const signInButtons = [document.getElementById('signInBtnDesktop'), document.getElementById('signInBtnMobile')];
+            const signOutButtons = [document.getElementById('signOutBtnDesktop'), document.getElementById('signOutBtnMobile')];
+            let isLoggedIn = false;
+
+            function updateAuthStateUI() {
+                if (isLoggedIn) {
+                    signInButtons.forEach(btn => btn.classList.add('hidden'));
+                    signOutButtons.forEach(btn => btn.classList.remove('hidden'));
+                } else {
+                    signInButtons.forEach(btn => btn.classList.remove('hidden'));
+                    signOutButtons.forEach(btn => btn.classList.add('hidden'));
+                }
+            }
+
+            signInButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // In a real app, this would open a modal or redirect.
+                    // For this demo, we'll simulate a login.
+                    isLoggedIn = true;
+                    updateAuthStateUI();
+                });
+            });
+
+            signOutButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    isLoggedIn = false;
+                    updateAuthStateUI();
+                });
+            });
+            
+            // Initial state
+            updateAuthStateUI();
+        });
+    </script>
+</body>
+</html>
