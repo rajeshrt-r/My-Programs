@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> welcome to RKS Tech world  - Tech & Security Hub</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS for dark theme and form/menu aesthetics -->
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d121c; /* Deep Dark background */
+            color: #d1d5db; /* Light gray text for readability */
+        }
+        .logo-text {
+            color: #10b981; /* Emerald Green/Teal */
+            text-shadow: 0 0 5px rgba(16, 185, 129, 0.4);
+        }
+        /* Page content sections must be hidden by default for routing */
+        .page-content {
+            display: none;
+            padding-top: 1.5rem; /* Add padding below the sticky header */
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        /* Keyframes for smooth transitions */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Login Form Specific Styling Overrides */
+        .form-container {
+            background-color: #ffffff; 
+            color: #1f2937; 
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(16, 185, 129, 0.2); 
+            max-width: 550px;
+            width: 95%;
+        }
+        .form-header {
+            border-bottom: 1px solid #e5e7eb;
+            color: #10b981; 
+        }
+        .input-field {
+            border: 1px solid #d1d5db;
+            padding: 12px;
+            border-radius: 8px;
+            transition: border-color 0.3s;
+        }
+        .submit-btn {
+            background-color: #10b981; 
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        .submit-btn:hover {
+            background-color: #059669; 
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Header and Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-gray-900/95 backdrop-blur-sm shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="flex items-center justify-between h-20">
+                <!-- Logo: RKS Tech world  -->
+                <div class="flex-shrink-0">
+                    <a href="#home" class="text-2xl font-extrabold logo-text tracking-tight">RKS Tech world </a>
+                </div>
+
+                <!-- Desktop Menu Links -->
+                <div class="hidden md:flex md:items-center md:space-x-6">
+                    <a href="#home" class="nav-link text-sm font-medium hover:text-emerald-400 transition duration-150 p-2 rounded-lg">Home</a>
+                    <a href="#about" class="nav-link text-sm font-medium hover:text-emerald-400 transition duration-150 p-2 rounded-lg">About Us</a>
+                    <a href="#webdev" class="nav-link text-sm font-medium hover:text-emerald-400 transition duration-150 p-2 rounded-lg">Web Development</a>
+                    <a href="#cybersec" class="nav-link text-sm font-medium hover:text-emerald-400 transition duration-150 p-2 rounded-lg">Cyber Security</a>
+                    <a href="#largescale" class="nav-link text-sm font-medium hover:text-emerald-400 transition duration-150 p-2 rounded-lg">Large-Scale Dev</a>
+                </div>
+
+                <!-- Desktop Auth Buttons -->
+                <div class="hidden md:flex md:items-center md:space-x-4">
+                    <button id="signInBtnDesktop" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2 px-4 rounded-full shadow-lg transition duration-300">
+                        Login / Register
+                    </button>
+                    <button id="signOutBtnDesktop" class="hidden bg-gray-700 hover:bg-gray-600 text-gray-200 font-semibold py-2 px-4 rounded-full transition duration-300">
+                        Logout
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="menuToggle" class="text-gray-400 hover:text-white p-2 rounded-md focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Menu and Overlay (for responsiveness) -->
+    <div id="mobileMenu" class="fixed inset-0 z-40 bg-gray-900 bg-opacity-95 transform -translate-x-full md:hidden transition-transform ease-in-out duration-300">
+        <div class="p-6">
+            <div class="flex justify-end mb-8">
+                <button id="menuClose" class="text-gray-400 hover:text-white p-2 rounded-md focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="mobile-nav-link text-xl font-semibold text-gray-200 hover:text-emerald-400 transition p-3 rounded-lg">Home</a>
+                <a href="#about" class="mobile-nav-link text-xl font-semibold text-gray-200 hover:text-emerald-400 transition p-3 rounded-lg">About Us</a>
+                <a href="#webdev" class="mobile-nav-link text-xl font-semibold text-gray-200 hover:text-emerald-400 transition p-3 rounded-lg">Web Development</a>
+                <a href="#cybersec" class="mobile-nav-link text-xl font-semibold text-gray-200 hover:text-emerald-400 transition p-3 rounded-lg">Cyber Security</a>
+                <a href="#largescale" class="mobile-nav-link text-xl font-semibold text-gray-200 hover:text-emerald-400 transition p-3 rounded-lg">Large-Scale Dev</a>
+                
+                <hr class="border-gray-700 my-4">
+                
+                <button id="signInBtnMobile" class="w-full text-left bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-4 rounded-lg shadow-lg transition duration-300">
+                    Login / Register
+                </button>
+                <button id="signOutBtnMobile" class="hidden w-full text-left bg-gray-700 hover:bg-gray-600 text-gray-200 font-semibold py-3 px-4 rounded-lg transition duration-300">
+                    Logout
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="overlay" class="fixed inset-0 z-30 bg-black opacity-0 pointer-events-none transition-opacity ease-in-out duration-300"></div>
+    
+    <!-- Main Content Area - All Pages are here -->
+    <main class="max-w-7xl mx-auto px-4 md:px-8">
+
+        <!-- 1. HOME PAGE CONTENT -->
+        <section id="home" class="page-content min-h-[calc(100vh-80px)]">
+            <div class="text-center py-16 md:py-24">
+                <h1 class="text-4xl sm:text-6xl font-extrabold text-white mb-4 leading-tight">
+                    Welcome to <span class="logo-text">RKS Tech world  </span>
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto mb-8">
+                    Your destination for the latest in technology, development, and digital innovation. Stay ahead of the curve.
+                </p>
+                
+                <a href="#about" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 shadow-xl shadow-emerald-500/30">
+                    Meet the Team
+                </a>
+            </div>
+
+            <h2 class="text-3xl font-bold text-center mb-10 text-gray-200">Our Core Pillars</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-16">
+                <!-- Web Development Card -->
+                <a href="#webdev" class="group bg-gray-800 rounded-xl p-6 shadow-xl hover:shadow-2xl transition duration-300 border border-gray-700 hover:border-emerald-500 block">
+                    <h3 class="text-xl font-semibold text-emerald-400 mb-3 group-hover:text-emerald-300">Web Development</h3>
+                    <p class="text-gray-400">Master modern frameworks, optimize performance, and build scalable frontends.</p>
+                </a>
+                <!-- Cyber Security Card -->
+                <a href="#cybersec" class="group bg-gray-800 rounded-xl p-6 shadow-xl hover:shadow-2xl transition duration-300 border border-gray-700 hover:border-emerald-500 block">
+                    <h3 class="text-xl font-semibold text-emerald-400 mb-3 group-hover:text-emerald-300">Cyber Security</h3>
+                    <p class="text-gray-400">Implement Zero Trust architectures and stay current on global threat intelligence.</p>
+                </a>
+                <!-- Large-Scale Dev Card -->
+                <a href="#largescale" class="group bg-gray-800 rounded-xl p-6 shadow-xl hover:shadow-2xl transition duration-300 border border-gray-700 hover:border-emerald-500 block">
+                    <h3 class="text-xl font-semibold text-emerald-400 mb-3 group-hover:text-emerald-300">Large-Scale System Development</h3>
+                    <p class="text-gray-400">Designing resilient, microservice-based solutions and mastering cloud scalability.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- 2. ABOUT US PAGE CONTENT -->
+        <section id="about" class="page-content py-16">
+            <h1 class="text-4xl font-bold text-emerald-400 mb-6 border-b border-gray-700 pb-3">About Rajesh Tech World</h1>
+            <div class="space-y-8 text-gray-300">
+                <p class="text-lg">
+                    Rajesh Tech World was founded on the principle that complex technological concepts should be accessible, practical, and inspiring. We are a collective of senior developers, security architects, and system engineers dedicated to sharing real-world insights, not just theory.
+                </p>
+                
+                <h2 class="text-2xl font-semibold text-white">Our Mission</h2>
+                <p>
+                    Our mission is to empower developers and tech enthusiasts globally by providing high-quality, actionable content focused on scalability, security, and next-generation architecture. We believe in continuous learning and fostering a community where innovation thrives.
+                </p>
+
+                <h2 class="text-2xl font-semibold text-white">The Team (Simulated)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+                    <div class="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700">
+                        <h3 class="text-xl font-bold text-emerald-500">Rajesh.RT</h3>
+                        <p class="text-sm text-gray-400">Founder & Chief Architect<br> Contact As: +91 7695867002</p>
+                        <p class="mt-2 text-sm">Specializes in distributed systems and cloud infrastructure (AWS/GCP).</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700">
+                        <h3 class="text-xl font-bold text-emerald-500">Rajakirubakaran.A.</h3>
+                        <p class="text-sm text-gray-400">Head of Cyber Security Research<br> Contact As: +91 97880 83194</p>
+                        <p class="mt-2 text-sm">Focuses on threat modeling, penetration testing, and compliance standards.</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700">
+                        <h3 class="text-xl font-bold text-emerald-500">Satyaprakash.T.</h3>
+                        <p class="text-sm text-gray-400">Lead Web Developer<br> Contact As: +91 63816 21681</p>
+                        <p class="mt-2 text-sm">Expert in React, Vue, and high-performance frontend engineering.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. WEB DEVELOPMENT PAGE CONTENT -->
+        <section id="webdev" class="page-content py-16">
+            <h1 class="text-4xl font-bold text-emerald-400 mb-6 border-b border-gray-700 pb-3">Modern Web Development</h1>
+            <div class="space-y-6 text-gray-300">
+                <p class="text-lg">
+                    The web is constantly evolving. Our coverage ensures you are building secure, performant, and maintainable applications. We champion **component-based architecture** and **server-side rendering (SSR)** strategies.
+                </p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gray-800 p-6 rounded-xl shadow-lg border-l-4 border-emerald-500">
+                        <h2 class="text-2xl font-semibold text-white mb-2">Frontend Excellence</h2>
+                        <ul class="list-disc list-inside space-y-2 text-gray-400 pl-4">
+                            <li>Deep dives into React Hooks and Signal-based state management (e.g., Angular Signals).</li>
+                            <li>Advanced performance metrics and Core Web Vitals optimization.</li>
+                            <li>Strategies for building truly responsive and accessible interfaces.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-xl shadow-lg border-l-4 border-emerald-500">
+                        <h2 class="text-2xl font-semibold text-white mb-2">Backend & APIs</h2>
+                        <ul class="list-disc list-inside space-y-2 text-gray-400 pl-4">
+                            <li>Exploring Node.js and Go for high-throughput microservices.</li>
+                            <li>Designing efficient RESTful and GraphQL APIs.</li>
+                            <li>Database selection criteria (SQL, NoSQL, NewSQL) for various use cases.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. CYBER SECURITY PAGE CONTENT -->
+        <section id="cybersec" class="page-content py-16">
+            <h1 class="text-4xl font-bold text-emerald-400 mb-6 border-b border-gray-700 pb-3">Advanced Cyber Security</h1>
+            <div class="space-y-6 text-gray-300">
+                <p class="text-lg">
+                    Security is not a feature; it is a fundamental requirement. We cover proactive defensive strategies and how to implement a culture of security by design across your organization.
+                </p>
+                <h2 class="text-2xl font-semibold text-white">Focus Areas:</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700">
+                        <h3 class="text-xl font-semibold text-white mb-2">Zero Trust Architecture</h3>
+                        <p class="text-gray-400 text-sm">Verify explicitly. Grant least-privilege access. Assume breach. Implementing modern network and application security without traditional perimeter defense.</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700">
+                        <h3 class="text-xl font-semibold text-white mb-2">Threat Intelligence</h3>
+                        <p class="text-gray-400 text-sm">Analyzing emerging threats (APTs, Ransomware) and integrating open-source threat feeds into your defense mechanisms.</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700">
+                        <h3 class="text-xl font-semibold text-white mb-2">DevSecOps</h3>
+                        <p class="text-gray-400 text-sm">Shifting security left. Automated scanning, static analysis, and vulnerability management integrated directly into the CI/CD pipeline.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. LARGE-SCALE SYSTEM DEVELOPMENT PAGE CONTENT (Massive Development) -->
+        <section id="largescale" class="page-content py-16">
+            <h1 class="text-4xl font-bold text-emerald-400 mb-6 border-b border-gray-700 pb-3">Large-Scale System Development</h1>
+            <div class="space-y-6 text-gray-300">
+                <p class="text-lg">
+                    Building systems that serve millions of users requires specific engineering discipline. This section explores patterns for high-availability, fault tolerance, and cost-effective scaling on cloud platforms.
+                </p>
+                <div class="bg-gray-800 p-6 rounded-xl shadow-lg border-l-4 border-emerald-500">
+                    <h2 class="text-2xl font-semibold text-white mb-2">Key Architectural Concepts</h2>
+                    <ul class="list-disc list-inside space-y-2 text-gray-400 pl-4">
+                        <li>Microservices vs. Monoliths: Determining the right boundary context for service decomposition.</li>
+                        <li>Event-Driven Architecture (EDA): Utilizing message queues and streaming platforms (Kafka, RabbitMQ) for decoupling.</li>
+                        <li>Distributed Caching & Databases: Strategies using Redis, Memcached, and distributed transaction management.</li>
+                        <li>Observability: Implementing robust logging, metrics, and tracing (e.g., using Prometheus and Jaeger).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Login/Registration Form Area (Remains Hidden Until Triggered) -->
+    <div id="loginFormContainer" class="hidden fixed inset-0 flex justify-center items-center z-50 p-4" style="background-color: rgba(0, 0, 0, 0.9);">
+        <div class="form-container relative p-6 sm:p-10">
+            <!-- Close Button -->
+            <button id="closeFormBtn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <div class="form-header text-center mb-8 pb-4">
+                <div class="logo-container flex items-center justify-center space-x-2">
+                    <svg class="w-8 h-8 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                    <h1 class="text-2xl font-bold">Rajesh Member Registration</h1>
+                </div>
+                <p class="text-sm text-gray-500 mt-2">Join our community for exclusive content access.</p>
+            </div>
+
+            <form id="registrationForm" class="space-y-6">
+                <!-- Form Inputs... (unchanged) -->
+                <div>
+                    <label for="name" class="block text-sm font-medium mb-1">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required class="w-full input-field">
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium mb-1">Email</label>
+                    <input type="email" id="email" name="email" placeholder="user@example.com" required class="w-full input-field">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium mb-1">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Min 8 characters" required class="w-full input-field">
+                </div>
+                <div>
+                    <label for="country" class="block text-sm font-medium mb-1">Country</label>
+                    <select id="country" name="country" required class="w-full input-field appearance-none bg-white"></select>
+                </div>
+                <div>
+                    <label for="state" class="block text-sm font-medium mb-1">State / Region</label>
+                    <select id="state" name="state" required class="w-full input-field appearance-none bg-white"></select>
+                </div>
+                <div class="flex items-start">
+                    <input id="terms" name="terms" type="checkbox" required class="h-4 w-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500">
+                    <label for="terms" class="ml-2 text-sm text-gray-600">
+                        I agree to the <a href="#" class="font-medium text-emerald-600 hover:text-emerald-500">Terms and Conditions</a>.
+                    </label>
+                </div>
+                <button type="submit" class="w-full submit-btn text-white font-bold py-3 rounded-lg shadow-md focus:outline-none focus:ring-4 focus:ring-emerald-500/50">
+                    Register Account
+                </button>
+            </form>
+            <div id="formMessage" class="mt-4 text-center text-sm text-green-600 font-medium hidden"></div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Routing, Menu, Auth, and Form Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- UI Toggle Handlers (Menu & Form) ---
+            const mobileMenu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('overlay');
+            const menuToggle = document.getElementById('menuToggle');
+            const menuClose = document.getElementById('menuClose');
+            
+            const loginFormContainer = document.getElementById('loginFormContainer');
+            const closeFormBtn = document.getElementById('closeFormBtn');
+            const mainContent = document.querySelector('main');
+            const pageContents = document.querySelectorAll('.page-content');
+            
+            const signInButtons = [document.getElementById('signInBtnDesktop'), document.getElementById('signInBtnMobile')];
+            const signOutButtons = [document.getElementById('signOutBtnDesktop'), document.getElementById('signOutBtnMobile')];
+            
+            let isLoggedIn = false;
+            
+            // Mobile Menu Logic
+            function openMobileMenu() {
+                mobileMenu.classList.remove('-translate-x-full');
+                overlay.classList.add('opacity-50', 'pointer-events-auto');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMobileMenu() {
+                mobileMenu.classList.add('-translate-x-full');
+                overlay.classList.remove('opacity-50', 'pointer-events-auto');
+                document.body.style.overflow = 'auto';
+            }
+
+            menuToggle.addEventListener('click', openMobileMenu);
+            menuClose.addEventListener('click', closeMobileMenu);
+            overlay.addEventListener('click', closeMobileMenu);
+            
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+
+            // --- Authentication and View Management ---
+            function showLoginForm() {
+                loginFormContainer.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; 
+                closeMobileMenu();
+            }
+
+            function hideLoginForm() {
+                loginFormContainer.classList.add('hidden');
+                document.body.style.overflow = 'auto'; 
+            }
+
+            function updateAuthStateUI() {
+                if (isLoggedIn) {
+                    signInButtons.forEach(btn => btn.classList.add('hidden'));
+                    signOutButtons.forEach(btn => btn.classList.remove('hidden'));
+                } else {
+                    signInButtons.forEach(btn => btn.classList.remove('hidden'));
+                    signOutButtons.forEach(btn => btn.classList.add('hidden'));
+                }
+            }
+
+            signInButtons.forEach(btn => btn.addEventListener('click', showLoginForm));
+            closeFormBtn.addEventListener('click', hideLoginForm);
+
+            signOutButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    isLoggedIn = false;
+                    updateAuthStateUI();
+                    hideLoginForm();
+                    document.getElementById('formMessage').classList.add('hidden'); 
+                    // Redirect to home on logout
+                    window.location.hash = '#home'; 
+                });
+            });
+
+            // --- Page Routing Logic ---
+            function handleRouting() {
+                const hash = window.location.hash || '#home';
+                const targetId = hash.substring(1); // Remove '#'
+
+                // Hide all pages first
+                pageContents.forEach(section => {
+                    section.style.display = 'none';
+                });
+
+                // Show the target page
+                const targetPage = document.getElementById(targetId);
+                if (targetPage) {
+                    targetPage.style.display = 'block';
+                    window.scrollTo(0, 0); // Scroll to top on page change
+                } else {
+                    // Default to home page if hash is invalid
+                    document.getElementById('home').style.display = 'block';
+                    window.location.hash = '#home';
+                }
+                
+                // Update active link styling (optional but good practice)
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('text-emerald-400');
+                    if (link.getAttribute('href') === hash) {
+                        link.classList.add('text-emerald-400');
+                    }
+                });
+            }
+
+            // Listen for hash changes (browser back/forward or link clicks)
+            window.addEventListener('hashchange', handleRouting);
+            
+            // Initial load of the correct page
+            handleRouting();
+            
+            // --- Form Logic (Country/State) ---
+            const countryStateMap = {
+                'india': ["Maharashtra", "Tamil Nadu", "Karnataka", "Uttar Pradesh", "West Bengal"],
+                'usa': ["California", "Texas", "New York", "Florida", "Washington"],
+                'canada': ["Ontario", "Quebec", "British Columbia", "Alberta"],
+                'germany': ["Bavaria", "Berlin", "Hamburg", "Baden-Württemberg"]
+            };
+
+            const registrationForm = document.getElementById('registrationForm');
+            const countrySelect = document.getElementById('country');
+            const stateSelect = document.getElementById('state');
+            const formMessage = document.getElementById('formMessage');
+
+            // Populate country dropdown
+            Object.keys(countryStateMap).forEach(country => {
+                const option = document.createElement('option');
+                option.value = country;
+                option.textContent = country.charAt(0).toUpperCase() + country.slice(1);
+                countrySelect.appendChild(option);
+            });
+
+            function populateStates() {
+                const selectedCountry = countrySelect.value;
+                stateSelect.innerHTML = '<option value="">Select a state</option>';
+                
+                if (selectedCountry && countryStateMap[selectedCountry]) {
+                    countryStateMap[selectedCountry].forEach(state => {
+                        const option = document.createElement('option');
+                        option.value = state;
+                        option.textContent = state;
+                        stateSelect.appendChild(option);
+                    });
+                }
+            }
+
+            countrySelect.addEventListener('change', populateStates);
+            populateStates(); 
+
+            // Form submission handler
+            registrationForm.addEventListener('submit', function(e) {
+                e.preventDefault(); 
+
+                if (!countrySelect.value || !stateSelect.value) {
+                    formMessage.textContent = "Please select your Country and State/Region.";
+                    formMessage.classList.remove('text-green-600', 'hidden');
+                    formMessage.classList.add('text-red-600');
+                    return;
+                }
+
+                // Simulation: Log user in and show success message
+                formMessage.textContent = `Registration successful! Redirecting to Home...`;
+                formMessage.classList.remove('hidden', 'text-red-600');
+                formMessage.classList.add('text-green-600');
+                
+                // Simulate login process delay
+                setTimeout(() => {
+                    isLoggedIn = true;
+                    updateAuthStateUI();
+                    hideLoginForm();
+                    formMessage.classList.add('hidden');
+                    registrationForm.reset(); 
+                    populateStates(); 
+                    window.location.hash = '#home'; // Redirect to Home
+                }, 2000); 
+            });
+
+            // Initial auth state check
+            updateAuthStateUI();
+        });
+    </script>
+</body>
+</html>
