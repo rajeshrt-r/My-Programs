@@ -1,228 +1,222 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Form-Website login form</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, orange 50%, grey 60%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        
-        .form-container {
-            background-color: pink;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            max-width: 500px;
-            padding: 30px;
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 25px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 20px;
-        }
-        
-        .logo-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
-        }
-        
-        .logo {
-            width: 50px;
-            height: 50px;
-            background-color: green;
-            border-radius: 50%;
-            margin-right: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 20px;
-        }
-        
-        .company-name {
-            color: #2575fc;
-            font-size: 24px;
-            font-family:'Times new Roman',cursive
-        }
-        
-        .header p {
-            color: maroon ;
-            font-size: 16px;
-            font-family:'Cambria',cursive
-        }
-        
-        .form-title {
-            text-align: center;
-            margin-bottom: 25px;
-            color: #333;
-            font-size: 22px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #444;
-        }
-        
-        input, select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 16px;
-            transition: all 0.3s;
-        }
-        
-        input:focus, select:focus {
-            outline: none;
-            border-color: #2575fc;
-            box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.2);
-        }
-        
-        .button-group {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-        }
-        
-        button {
-            flex: 1;
-            padding: 14px;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        button[type="submit"] {
-            background-color: #2575fc;
-            color: white;
-        }
-        
-        button[type="submit"]:hover {
-            background-color: #1a68e8;
-            transform: translateY(-2px);
-        }
-        
-        .reset-btn {
-            background-color: #f5f5f5;
-            color: #666;
-        }
-        
-        .reset-btn:hover {
-            background-color: #eaeaea;
-        }
-        
-        .form-note {
-            margin-top: 15px;
-            font-size: 14px;
-            color: #666;
-            text-align: center;
-        }
-    </style>
-</head>
+<html lang="en" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>RT Login Page</title>
+
+        <style>
+           * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', sans-serif; /* Fixed typo: font family to font-family */
+            }
+            body {
+                background: linear-gradient(135deg, orange 50%, grey 60%);
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+            }
+            .form-container{
+                background-color: pink;
+                border-radius: 12px;
+                box-shadow: 0 10px 30px rgb(0, 0, 0, 0.2);
+                width: 100%;
+                max-width: 500px;
+                padding: 30px;
+            }
+            .header {
+                text-align: center;
+                margin-bottom: 25px;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 20px;
+            }
+            .logo-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+            .logo {
+                width: 50px;
+                height: 50px;
+                background-color: green;
+                border-radius: 50%;
+                margin-right: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-weight: 20px;
+                font-size: 20px;
+            }
+            .company-name{
+                color: #2575fc;
+                font-size: 24px;
+                font-family: 'Times New Roman', cursive
+            }
+            .header p {
+                color: maroon;
+                font-size: 16px;
+                font-family: 'Cambria',cursive
+            }
+            .form-title {
+                text-align: center;
+                margin-bottom: 25px;
+                color: #333;
+                font-size: 22px;
+            }
+            .form-group {
+                margin-bottom: 20px;
+            }
+            label{
+                display: block;
+                margin-bottom: 8px;
+                font-weight: 600;
+                color:black
+            }
+            /* Updated CSS to include textarea for the address box */
+            input, select, textarea {
+                width: 100%;
+                padding: 12px 15px;
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                font-size: 16px;
+                transition: all 0.3s;
+                font-family: inherit; /* Ensures textarea uses the same font */
+            }
+            /* Specific style for the address box to allow resizing */
+            textarea {
+                resize: vertical;
+                min-height: 100px;
+            }
+            input:focus, select:focus, textarea:focus {
+                outline: none;
+                border-color: #2575fc;
+                box-shadow:  0 0 0 3px rgba(37,117,252,0.2);
+            }
+            .button-group{
+                display: flex;
+                gap: 15px;
+                margin-top: 30px;
+
+            }
+            button {
+                flex: 1;
+                padding: 14px;
+                border: none;
+                border-radius: 6px;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+            button[type="submit"] {
+                background-color: #2575fc;
+                color: white;
+            }
+            button[type="submit"]:hover { /* Fixed spacing typo */
+                background-color: #1a68e8;
+                transform: translateY(-2px);
+            }
+            .reset-btn {
+                background-color: #f5f5f5;
+                color: #666;
+            }
+            .reset-btn:hover {
+                background-color: #eaeaea;
+            }
+            .form-note {
+                margin-top: 15px;
+                font-size: 14px;
+                color: #666;
+                text-align: center;
+            }
+        </style>
+    </head>
 <body>
-    <div class="form-container">
-        <div class="header">
-            <div class="logo-container">
-                 <div class="logo">RT</div>
-                <h1 class="company-name">Rajesh TechWorld</h1>
-            </div>
-            <p>Welcome to Rajesh TechWorld - Your Technology Partner</p>
+
+<div class="form-container">
+    <div class="header">
+        <div class="logo-container">
+            <div class="logo">RT</div>
+            <h1 class="company-name">Rajesh TechWorld</h1>
         </div>
-        <h2 class="form-title">Sign in</h2>
-        <form action="/submit" method="POST">
-            <div class="form-group">
-                <label for="fullname">Full Name</label>
-                <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
-                <label type="lastname">Last Name</label>
-                <input type="text" id="lastname" name="lastname" placeholder="Enter your last name" required>
-               
-            </div>
-            
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
-            </div>
-            
-            <!-- Country and State Dropdowns -->
-            <div class="form-group">
-                <label for="country">Country</label>
-                <select id="country" name="country" required>
-                    <option value="">Select a country</option>
-                    <!-- Countries will be populated dynamically -->
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="state">State</label>
-                <select id="state" name="state" required>
-                    <option value="">Select a state</option>
-                    <!-- States will be populated dynamically -->
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="city">City</label>
-                <input type="text" id="city" name="city" placeholder="Enter your city">
-            </div>
-            <!-- Add this code after the phone number field -->
-<div class="form-group">
-    <label for="gender">Gender</label>
-    <select id="gender" name="gender" required>
-        <option value="">Select your gender</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="other">Other</option>
-        <option value="prefer-not-to-say">Prefer not to say</option>
-    </select>
-</div>
-            <div class="form-group">
-            <label for="photo">Upload Photo</label>
-            <input type="file" id="photo" name="photo">
-        </div>
-            <div class="button-group">
-                <button type="submit">Submit</button>
-                <button type="reset" class="reset-btn">Clear</button>
-            </div>
-            
-            <p class="form-note">By submitting this form, you agree to our Terms of Service</p>
-        </form>
+        <p>Welcome to Rajesh TechWorld - Your Technology Partner</p>
     </div>
-    <script>
+
+    <h2 class="form-title">Sign in</h2>
+    <form action="/submit" method="POST">
+
+        <div class="form-group">
+            <label for="firstname">First Name</label>
+            <input type="text" id="firstname" name="firstname" placeholder="Enter your first name" required>
+            <label for="lastname">Last Name</label>
+            <input type="text" id="lastname" name="lastname" placeholder="Enter your last name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="text" id="email" name="email" placeholder="Enter your email address" required>
+            <label for="password">Password</label>
+            <input type="text" id="password" name="password" placeholder="Enter your password" required>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required>
+        </div>
+
+        <div class="form-group">
+            <label for="country">Country</label>
+            <select id="country" name="country" required>
+                <option value="">Select a country</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="state">State</label>
+            <select id="state" name="state" required>
+                <option value="">Select a State</option>
+            </select>
+        </div>
+        
+         <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" placeholder="Enter your city" required>
+        </div>
+
+        <div class="form-group">
+            <label for="address">Address</label>
+            <textarea id="address" name="address" rows="5" placeholder="Enter your full address" required></textarea>
+        </div>
+
+         <div class="form-group">
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+                <option value="gender" >Select your gender</option>
+                <option value="male" >Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="photo">Upload Photo</label>
+            <input type="file" id="photo" name="photo" accept="image/*">
+        </div>
+
+        <div class="form-group">
+            <button type="submit">Submit</button>
+            <button type="reset" class="reset-btn">Clear</button>
+        </div>
+        <p class="form-note">By submitting this form you agree to our Terms and Service</p>
+    </form>
+ </div>
+  <script>
         const countryStateMap = {
             'india': ["Tamil Nadu", "Maharashtra", "Karnataka", "Delhi", "West Bengal","Kerala","Hydrabad","Bihar"],
             'usa': ["California", "Texas", "Florida", "New York", "Illinois","New Jersey","Georgia","New Mexico","Washington"],
@@ -234,19 +228,16 @@
         const countrySelect = document.getElementById('country');
         const stateSelect = document.getElementById('state');
 
-        // Populate country dropdown
-        Object.keys(countryStateMap).forEach(country => {
+         Object.keys(countryStateMap).forEach(country => {
             const option = document.createElement('option');
             option.value = country;
             option.textContent = country.charAt(0).toUpperCase() + country.slice(1);
             countrySelect.appendChild(option);
         });
 
-        // Function to populate states based on selected country
-        function populateStates() {
+         function populateStates() {
             const selectedCountry = countrySelect.value;
             stateSelect.innerHTML = '<option value="">Select a state</option>';
-            
             if (selectedCountry && countryStateMap[selectedCountry]) {
                 countryStateMap[selectedCountry].forEach(state => {
                     const option = document.createElement('option');
@@ -255,12 +246,8 @@
                     stateSelect.appendChild(option);
                 });
             }
-        }
-
-        // Event listener for country change
-        countrySelect.addEventListener('change', populateStates);
+         }
+         countrySelect.addEventListener('change', populateStates);
     </script>
 </body>
 </html>
-
-    
